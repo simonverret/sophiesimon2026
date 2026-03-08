@@ -7,7 +7,12 @@
 body {
     font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
     /* font-family: 'EB Garamond', "Baskerville", "Palatino Linotype", Georgia, serif; */
-    background: #000;
+    background-color: #000;
+    background-image: url('asset/IMG_0423.JPG');
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     font-size: 1.4em;
     color: #eee;
     padding-top: 52px; /* clear fixed nav */
@@ -40,20 +45,28 @@ body {
     color: #fff;
 }
 
+.bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(rgba(0,0,0,0.7) 85%, rgba(0,0,0,1) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
 .section {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .container {
     text-align: center;
     background: rgba(0,0,0,0.6);
     padding: 60px 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 100%;
 }
 
 h1 {

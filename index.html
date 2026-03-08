@@ -9,18 +9,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <nav class="site-nav">
         <a href="#deroulement">Déroulement</a>
         <a href="#hebergement">Options d'hébergement</a>
         <a href="#rsvp">RSVP</a>
     </nav>
-
+    
+    <div class="bg-overlay" aria-hidden="true"></div>
     <section id="deroulement" class="section">
         <div class="container">
             <h2>Déroulement</h2>
             <p>À venir.</p>
         </div>
     </section>
+
 
     <section id="hebergement" class="section">
         <div class="container">
@@ -82,5 +85,12 @@
             </script>
         </div>
     </section>
+    
+    <script>
+        window.addEventListener('scroll', function() {
+            var offset = window.scrollY * 0.12;
+            document.body.style.backgroundPositionY = (-offset) + 'px';
+        }, { passive: true });
+    </script>
 </body>
 </html>
