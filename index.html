@@ -9,56 +9,78 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>RSVP</h1>
-        
-        <p>À bientôt!</p>
-        
-        <form id="rsvp-form" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSf_WkmeP-TBlhQJ6Re-8R7TQ3LyI-i86EN6FWBdyB1tvcxTFQ/formResponse" target="hidden_iframe" class="rsvp-form">
-            <label for="rsvp-name">Nom</label>
-            <!-- Replace the name value with your Google Form's entry ID, e.g. entry.111111111 -->
-            <input id="rsvp-name" name="entry.868932132" type="text" placeholder="Votre nom" required>
+    <nav class="site-nav">
+        <a href="#deroulement">Déroulement</a>
+        <a href="#hebergement">Options d'hébergement</a>
+        <a href="#rsvp">RSVP</a>
+    </nav>
 
-            <label for="rsvp-email">Email</label>
-            <!-- Replace the name value with your Google Form's entry ID, e.g. entry.222222222 -->
-            <input id="rsvp-email" name="entry.1861931117" type="email" placeholder="you@example.com" required>
+    <section id="deroulement" class="section">
+        <div class="container">
+            <h2>Déroulement</h2>
+            <p>À venir.</p>
+        </div>
+    </section>
+
+    <section id="hebergement" class="section">
+        <div class="container">
+            <h2>Options d'hébergement</h2>
+            <p>À venir.</p>
+        </div>
+    </section>
+
+    <section id="rsvp" class="section">
+        <div class="container">
+            <h1>RSVP</h1>
+
+            <p>À bientôt!</p>
+
+            <form id="rsvp-form" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSf_WkmeP-TBlhQJ6Re-8R7TQ3LyI-i86EN6FWBdyB1tvcxTFQ/formResponse" target="hidden_iframe" class="rsvp-form">
+                <label for="rsvp-name">Nom</label>
+                <!-- Replace the name value with your Google Form's entry ID, e.g. entry.111111111 -->
+                <input id="rsvp-name" name="entry.868932132" type="text" placeholder="Votre nom" required>
+
+                <label for="rsvp-email">Email</label>
+                <!-- Replace the name value with your Google Form's entry ID, e.g. entry.222222222 -->
+                <input id="rsvp-email" name="entry.1861931117" type="email" placeholder="you@example.com" required>
 
 
-            <label id="rsvp-attending-label">Participerez-vous ?</label>
-            <!-- Replaced select with radio choices for round option styling -->
-            <div class="radio-group" role="radiogroup" aria-labelledby="rsvp-attending-label">
-                <label class="radio"><input type="radio" name="entry.312840016" value="Oui" required><span>Oui</span></label>
-                <label class="radio"><input type="radio" name="entry.312840016" value="Non"><span>Non</span></label>
-            </div>
+                <label id="rsvp-attending-label">Participerez-vous ?</label>
+                <!-- Replaced select with radio choices for round option styling -->
+                <div class="radio-group" role="radiogroup" aria-labelledby="rsvp-attending-label">
+                    <label class="radio"><input type="radio" name="entry.312840016" value="Oui" required><span>Oui</span></label>
+                    <label class="radio"><input type="radio" name="entry.312840016" value="Non"><span>Non</span></label>
+                </div>
 
-            <button type="submit" class="rsvp-submit">Envoyer</button>
-        </form>
+                <button type="submit" class="rsvp-submit">Envoyer</button>
+            </form>
 
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-        <div id="rsvp-message" class="rsvp-message" style="display:none;">Merci — votre réponse a été envoyée.</div>
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+            <div id="rsvp-message" class="rsvp-message" style="display:none;">Merci — votre réponse a été envoyée.</div>
 
-        <script>
-            (function(){
-                var form = document.getElementById('rsvp-form');
-                var iframe = document.getElementById('hidden_iframe');
-                var msg = document.getElementById('rsvp-message');
-                var submitted = false;
+            <script>
+                (function(){
+                    var form = document.getElementById('rsvp-form');
+                    var iframe = document.getElementById('hidden_iframe');
+                    var msg = document.getElementById('rsvp-message');
+                    var submitted = false;
 
-                form.addEventListener('submit', function(){
-                    // mark that we've submitted so iframe load knows to show success
-                    submitted = true;
-                });
+                    form.addEventListener('submit', function(){
+                        // mark that we've submitted so iframe load knows to show success
+                        submitted = true;
+                    });
 
-                // When iframe loads after submission, show a local thank-you message
-                iframe.addEventListener('load', function(){
-                    if(submitted){
-                        form.style.display = 'none';
-                        msg.style.display = 'block';
-                        submitted = false;
-                    }
-                });
-            })();
-        </script>
-    </div>
+                    // When iframe loads after submission, show a local thank-you message
+                    iframe.addEventListener('load', function(){
+                        if(submitted){
+                            form.style.display = 'none';
+                            msg.style.display = 'block';
+                            submitted = false;
+                        }
+                    });
+                })();
+            </script>
+        </div>
+    </section>
 </body>
 </html>
