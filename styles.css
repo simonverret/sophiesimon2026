@@ -143,8 +143,8 @@ section {
 
 [data-md] iframe {
     display: block;
-    width: 70%;
-    height: 300px;
+    width: 90%;
+    height: 450px;
     border: none;
     margin: 1em auto;
 }
