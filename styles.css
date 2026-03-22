@@ -15,7 +15,7 @@ body {
 
 .hero {
     height: calc(95vh - 110px);
-    background-image: url('asset/IMG_0568.jpg');
+    background-image: url('asset/IMG_0568.JPG');
     background-size: cover;
     background-position: top;
     display: flex;
