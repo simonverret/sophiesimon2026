@@ -142,16 +142,15 @@
             <script>
             (function () {
                 /* ── Config ──────────────────────────────────────────── */
-                var FORM_URL = ''; /* TODO: coller l'URL d'action du Google Form ici */
+                var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf_WkmeP-TBlhQJ6Re-8R7TQ3LyI-i86EN6FWBdyB1tvcxTFQ/formResponse';
 
-                /* Noms des champs Google Form — à mettre à jour une fois le formulaire créé */
                 var E = {
-                    email:        'entry.EMAIL',
-                    nom:          'entry.NOM',
-                    presence:     'entry.PRESENCE',
-                    restrictions: 'entry.RESTRICTIONS',
-                    plat:         'entry.PLAT',
-                    age:          'entry.AGE'
+                    email:        'entry.1861931117',
+                    nom:          'entry.417198323',
+                    presence:     'entry.1875724426',
+                    age:          'entry.563216720',
+                    restrictions: 'entry.2040104472',
+                    plat:         'entry.1903809122'
                 };
 
                 /* ── État ────────────────────────────────────────────── */
@@ -234,8 +233,8 @@
                         h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Tajine" tabindex="0"><span>Tajine</span></label>';
                         h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Pâtes" tabindex="0"><span>Pâtes</span></label>';
                     } else {
-                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Menu enfant A" tabindex="0"><span>Option A</span></label>';
-                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Menu enfant B" tabindex="0"><span>Option B</span></label>';
+                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Option A" tabindex="0"><span>Option A</span></label>';
+                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Option B" tabindex="0"><span>Option B</span></label>';
                     }
                     h += '</div></div>';
 
@@ -337,6 +336,7 @@
                     /* Invité principal */
                     var main = { email: document.getElementById('field-email').value.trim(), nom: document.getElementById('field-nom').value.trim(), presence: presence };
                     if (presence === 'Oui') {
+                        main.age          = 'adulte';
                         main.restrictions = document.getElementById('field-restrictions').value.trim();
                         var p = document.querySelector('input[name="plat-main"]:checked');
                         main.plat = p ? p.value : '';
@@ -345,19 +345,18 @@
 
                     /* Invités supplémentaires */
                     if (presence === 'Oui') {
+                        var emailVal = document.getElementById('field-email').value.trim();
                         extraGuests.forEach(function (g) {
-                            var col   = document.getElementById('guest-col-' + g.id);
+                            var col    = document.getElementById('guest-col-' + g.id);
                             var platEl = col.querySelector('input[type="radio"]:checked');
                             var sub = {
-                                email:        email,
+                                email:        emailVal,
                                 nom:          col.querySelector('.g-nom').value.trim(),
                                 presence:     'Oui',
+                                age:          g.type === 'child' ? col.querySelector('.g-age').value : 'adulte',
                                 restrictions: col.querySelector('.g-restrictions').value.trim(),
                                 plat:         platEl ? platEl.value : ''
                             };
-                            if (g.type === 'child') {
-                                sub.age = col.querySelector('.g-age').value;
-                            }
                             subs.push(sub);
                         });
                     }
