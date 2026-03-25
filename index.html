@@ -122,8 +122,7 @@
                     <p><strong>Pâtes :</strong> Pâtes au pesto de basilic, légumes, tofu mariné à la toscane grillé, vegan</p>
                 </div>
                 <div id="children-meal-note" class="meal-note" style="display:none">
-                    <p><strong>Option A :</strong> description du plat</p>
-                    <p><strong>Option B :</strong> description du plat</p>
+                    <p><strong>Menu enfant :</strong> à venir</p>
                 </div>
 
                 <div id="rsvp-actions" style="display:none">
@@ -228,15 +227,12 @@
                     h +=   '<input type="text" class="g-restrictions" placeholder="allergie, intolérance">';
                     h += '</div>';
 
-                    h += '<div class="field-group"><label>Repas</label><div class="radio-group">';
                     if (!isChild) {
+                        h += '<div class="field-group"><label>Repas</label><div class="radio-group">';
                         h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Tajine" tabindex="0"><span>Tajine</span></label>';
                         h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Pâtes" tabindex="0"><span>Pâtes</span></label>';
-                    } else {
-                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Option A" tabindex="0"><span>Option A</span></label>';
-                        h += '<label class="radio"><input type="radio" name="plat-' + id + '" value="Option B" tabindex="0"><span>Option B</span></label>';
+                        h += '</div></div>';
                     }
-                    h += '</div></div>';
 
                     col.innerHTML = h;
                     col.querySelector('.remove-guest').addEventListener('click', function () { removeGuest(id); });
@@ -321,7 +317,7 @@
                             var col = document.getElementById('guest-col-' + g.id);
                             ok = checkInput(col.querySelector('.g-nom')) && ok;
                             if (g.type === 'child') ok = checkInput(col.querySelector('.g-age')) && ok;
-                            ok = checkRadio('plat-' + g.id) && ok;
+                            if (g.type !== 'child') ok = checkRadio('plat-' + g.id) && ok;
                         });
                     }
 
@@ -355,7 +351,7 @@
                                 presence:     'Oui',
                                 age:          g.type === 'child' ? col.querySelector('.g-age').value : 'adulte',
                                 restrictions: col.querySelector('.g-restrictions').value.trim(),
-                                plat:         platEl ? platEl.value : ''
+                                plat:         g.type === 'child' ? 'Enfant' : (platEl ? platEl.value : '')
                             };
                             subs.push(sub);
                         });
